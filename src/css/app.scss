@@ -1,1 +1,64 @@
 // app global css in SCSS form
+::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+  background: transparent;
+  z-index: 12;
+  overflow: visible;
+}
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: $primary;
+  border-radius: 10px;
+  z-index: 12;
+  border: 2px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  -webkit-transition: background-color 0.28s ease-in-out;
+  transition: background-color 0.28s ease-in-out;
+  margin: 4px;
+  min-height: 32px;
+  min-width: 32px;
+}
+/* Estilos para transiciones de deslizamiento */
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-top-enter-active,
+.slide-top-leave-active,
+.slide-bottom-enter-active,
+.slide-bottom-leave-active {
+  transition: transform 0.5s ease;
+}
+
+.slide-right-enter {
+  transform: translateX(100%);
+}
+
+.slide-right-leave-to {
+  transform: translateX(-100%);
+}
+
+.slide-left-enter {
+  transform: translateX(-100%);
+}
+
+.slide-left-leave-to {
+  transform: translateX(100%);
+}
+
+.slide-top-enter {
+  transform: translateY(-100%);
+}
+
+.slide-top-leave-to {
+  transform: translateY(100%);
+}
+
+.slide-bottom-enter {
+  transform: translateY(100%);
+}
+
+.slide-bottom-leave-to {
+  transform: translateY(-100%);
+}
