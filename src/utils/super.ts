@@ -1,7 +1,13 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-import { DialogI, SuperFormT, SuperInputT, SuperInputUnionT } from '@/interfaces/global';
+import type {
+  DialogI,
+  SuperFormT,
+  SuperInputT,
+  SuperInputUnionT,
+} from '@/interfaces/global';
 
-import { UnwrapNestedRefs, VNodeRef, reactive, ref } from 'vue';
+import type { UnwrapNestedRefs, VNodeRef } from 'vue';
+import { reactive, ref } from 'vue';
 
 const modelInput = <SuperInputUnionT>{
   rules: [],
@@ -10,8 +16,12 @@ const modelInput = <SuperInputUnionT>{
   ref: {},
   error: {
     status: false,
-    on: function () { this.status = true; },
-    off: function () { this.status = false; },
+    on: function () {
+      this.status = true;
+    },
+    off: function () {
+      this.status = false;
+    },
   },
   set(val: any) {
     this.copy = val;
@@ -157,10 +167,7 @@ export const superMultiModal = <Status = string>({
     },
   }) as DialogI<Status>;
 
-export const superModal = ({
-  id = <any>null,
-  value = false,
-}) =>
+export const superModal = ({ id = <any>null, value = false }) =>
   reactive({
     value: value,
     id: <any>id,

@@ -13,7 +13,7 @@ export default () => {
         position: 'top',
         icon: 'error',
         message,
-      })
+      });
     },
     success: (message: string) => {
       $q.notify({
@@ -21,8 +21,7 @@ export default () => {
         // progress: true,
         // position: 'top',
         message,
-      })
+      });
     },
-  }
-
-}
+  };
+};

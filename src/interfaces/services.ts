@@ -1,5 +1,4 @@
-export type QueryParams = Omit<Pagination, 'count' | 'count_total'> & Filters
-
+export type QueryParams = Omit<Pagination, 'count' | 'count_total'> & Filters;
 
 export interface ResponseData<T> {
   data: T[];

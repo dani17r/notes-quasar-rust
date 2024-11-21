@@ -1,4 +1,4 @@
-import {
+import type {
   NavigationGuardNext,
   RouteLocationNormalized,
   RouteLocationNormalizedLoaded,

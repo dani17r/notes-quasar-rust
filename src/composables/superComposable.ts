@@ -1,20 +1,13 @@
-// import { useAcountsStore } from 'src/stores/acountsStore';
-// import { useOptionsStore } from 'src/stores/optionsStore';
-// import { useUsersStore } from 'src/stores/usersStore';
-import { useNoteStore } from 'src/stores/notes';
-import notifications from 'src/utils/notifications';
-// import { useAuthStore } from 'src/stores/authStore';
 import handleErrorsAction from 'src/utils/handleErrors';
+import notifications from 'src/utils/notifications';
 import { useRouter, useRoute } from 'vue-router';
+import { useNoteStore } from 'src/stores/notes';
+import { useTagStore } from 'src/stores/tags';
 import { useQuasar } from 'quasar';
 
-
 export default () => {
-  // const users = useUsersStore();
-  // const acounts = useAcountsStore();
-  // const options = useOptionsStore();
   const notes = useNoteStore();
-  // const auth = useAuthStore();
+  const tags = useTagStore();
 
   const handleErrors = handleErrorsAction();
   const notify = notifications();
@@ -26,7 +19,7 @@ export default () => {
     // acounts.reset();
     // options.reset();
     // auth.reset();
-  }
+  };
 
   return {
     notify,
@@ -35,12 +28,9 @@ export default () => {
     handleErrors,
     store: {
       reset,
-      // acounts,
-      // options,
-      // users,
       notes,
-      // auth,
+      tags,
     },
-    $q
-  }
-}
+    $q,
+  };
+};

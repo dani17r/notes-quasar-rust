@@ -1,4 +1,4 @@
-import { route } from 'quasar/wrappers';
+import { defineRouter } from '#q-app/wrappers';
 import {
   createMemoryHistory,
   createRouter,
@@ -16,10 +16,12 @@ import routes from './routes';
  * with the Router instance.
  */
 
-export default route(function (/* { store, ssrContext } */) {
+export default defineRouter(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
-    : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory);
+    : process.env.VUE_ROUTER_MODE === 'history'
+      ? createWebHistory
+      : createWebHashHistory;
 
   const Router = createRouter({
     scrollBehavior: (to, from, savedPosition) => {
@@ -27,15 +29,15 @@ export default route(function (/* { store, ssrContext } */) {
         return {
           ...savedPosition,
           behavior: 'smooth',
-          selector: to.hash
-        }
+          selector: to.hash,
+        };
       } else {
         return {
           x: 0,
           y: 0,
           behavior: 'smooth',
-          selector: to.hash
-        }
+          selector: to.hash,
+        };
       }
     },
     routes,
@@ -48,3 +50,12 @@ export default route(function (/* { store, ssrContext } */) {
 
   return Router;
 });
+
+/*
+ * If not building with SSR mode, you can
+ * directly export the Router instantiation;
+ *
+ * The function below can be async too; either use
+ * async/await or return a Promise which resolves
+ * with the Router instance.
+ */

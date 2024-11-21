@@ -15,11 +15,11 @@ export const required = (val: string) => {
 };
 
 export const maxLength = (val: string, maxCaracter = 30) => {
-  return (val.length <= maxCaracter) || `${messages.maxLength} ${maxCaracter}`;
+  return val.length <= maxCaracter || `${messages.maxLength} ${maxCaracter}`;
 };
 
 export const minLength = (val: string, minCaracter = 3) => {
-  return (val.length >= minCaracter) || `${messages.minLength} ${minCaracter}`;
+  return val.length >= minCaracter || `${messages.minLength} ${minCaracter}`;
 };
 
 export const isCedula = (val: string) => {
@@ -32,9 +32,12 @@ export const requiredSelect = (val: any) => {
 };
 
 export const isPhone = (val: string) => {
-  const phoneRegex = /^(?:(?:\+58|58|0)(?:\d{3})?\d{7}|(?:\+57|57|0)(?:\d{3})?\d{7,10}|(?:\+56|56|0)(?:\d{2})?\d{8}|(?:\+593|593|0)(?:\d{2})?\d{7,9}|(?:\+1|1|0)(?:\d{3})?\d{7}|(?:\+34|34|0)(?:\d{2})?\d{8})$/;
+  const phoneRegex =
+    /^(?:(?:\+58|58|0)(?:\d{3})?\d{7}|(?:\+57|57|0)(?:\d{3})?\d{7,10}|(?:\+56|56|0)(?:\d{2})?\d{8}|(?:\+593|593|0)(?:\d{2})?\d{7,9}|(?:\+1|1|0)(?:\d{3})?\d{7}|(?:\+34|34|0)(?:\d{2})?\d{8})$/;
 
   const venezuelaPhoneRegex = /^(0412|0424|0414|0416|0426)\d{7}$/;
 
-  return (venezuelaPhoneRegex.test(val) && phoneRegex.test(val)) || messages.isPhone;
+  return (
+    (venezuelaPhoneRegex.test(val) && phoneRegex.test(val)) || messages.isPhone
+  );
 };

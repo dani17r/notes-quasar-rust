@@ -1,4 +1,4 @@
-import { Filters, Pagination, QueryParams } from '@interfaces/services';
+import type { Filters, Pagination, QueryParams } from '@interfaces/services';
 
 export const defaultQuerys: QueryParams = {
   pag: 1,
@@ -7,7 +7,7 @@ export const defaultQuerys: QueryParams = {
   without: false,
   sort: 'id:desc',
   search: '',
-  fields_search: ''
+  fields_search: '',
 };
 
 export const defaultPagination: Pagination = {
@@ -15,7 +15,7 @@ export const defaultPagination: Pagination = {
   count: 0,
   pag: 1,
   limit: 10,
-}
+};
 
 export const defaultFilter: Filters = {
   fields_search: '',
@@ -23,4 +23,4 @@ export const defaultFilter: Filters = {
   fields: '',
   without: false,
   sort: '',
-}
+};

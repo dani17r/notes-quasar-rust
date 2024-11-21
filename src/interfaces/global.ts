@@ -1,5 +1,5 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-import { Ref } from 'vue';
+import type { Ref } from 'vue';
 
 export interface DialogI<Status> {
   value: boolean;
@@ -28,7 +28,7 @@ export interface InputI {
     status: boolean;
     on: () => void;
     off: () => void;
-  },
+  };
 }
 
 export interface FormI<T> {

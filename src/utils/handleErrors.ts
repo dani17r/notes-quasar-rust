@@ -14,7 +14,11 @@ export default () => {
       }
     },
     email: (error: Error, action: ActionT) => {
-      if (error.message.includes('Unable to validate email address: invalid format')) {
+      if (
+        error.message.includes(
+          'Unable to validate email address: invalid format',
+        )
+      ) {
         console.log('entro aqui', error.message);
         notify.error('El email no es valido.');
         action && action();
@@ -33,6 +37,6 @@ export default () => {
         notify.error('El email ya esta en usado, intenta con otro.');
         action && action();
       }
-    }
-  }
-}
+    },
+  };
+};

@@ -2,14 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="menus.toggleLeftDrawer()" />
 
         <q-toolbar-title> RustNote </q-toolbar-title>
 
@@ -17,7 +10,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+    <q-drawer v-model="menus.leftDrawer.value" show-if-above bordered>
       <q-list>
         <q-item-label header> Notas </q-item-label>
 
@@ -37,11 +30,14 @@
 
 <script setup lang="ts">
 import transitionsComposable from '@composables/transitionsComposable';
-import ItemNote, { ItemLinkPropsI } from '@components/ItemLink.vue';
+import type { ItemLinkPropsI } from '@components/ItemLink.vue';
+import ItemNote from '@components/ItemLink.vue';
+import menusComposable from '@composables/menusComposable';
 import { onBeforeRouteUpdate } from 'vue-router';
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 
 const { state } = transitionsComposable();
+const menus = menusComposable();
 
 defineOptions({
   name: 'MainLayout',
@@ -51,25 +47,25 @@ const linksList: ItemLinkPropsI[] = [
   {
     title: 'Inicio',
     caption: 'Principal',
-    icon: 'note',
+    icon: 'home',
     link: { name: 'index' },
   },
   {
     title: 'Notas',
     caption: 'Crea notas',
-    icon: 'note',
+    icon: 'notes',
     link: { name: 'index-notes' },
   },
   {
     title: 'Etiquetas',
     caption: 'Agrega Etiquetas',
-    icon: 'tag',
+    icon: 'sell',
     link: { name: 'index-tags' },
   },
   {
     title: 'Categorias',
     caption: 'Tipos de categorias',
-    icon: 'category',
+    icon: 'checklist',
     link: { name: 'index-categories' },
   },
   {
@@ -79,12 +75,6 @@ const linksList: ItemLinkPropsI[] = [
     link: { name: 'config' },
   },
 ];
-
-const leftDrawerOpen = ref(false);
-
-function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-}
 
 onBeforeRouteUpdate(() => {
   document.body.style.overflow = 'hidden';

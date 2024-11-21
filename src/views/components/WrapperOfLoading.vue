@@ -34,9 +34,9 @@ if (props.auto) {
 </script>
 
 <template>
-  <template v-if="!status">
+  <div v-if="!status">
     <slot></slot>
-  </template>
+  </div>
   <div v-else class="tw-flex tw-justify-center tw-w-full">
     <q-spinner-dots color="primary" class="tw-inline tw-w-[30px] tw-h-[30px]" />
   </div>
