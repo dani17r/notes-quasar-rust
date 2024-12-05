@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header>
       <q-toolbar>
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="menus.toggleLeftDrawer()" />
 
@@ -10,12 +10,14 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="menus.leftDrawer.value" show-if-above bordered>
+    <q-drawer v-model="menus.leftDrawer.value" show-if-above :bordered="!isDark">
       <q-list>
         <q-item-label header> Notas </q-item-label>
 
         <ItemNote v-for="link in linksList" :key="link.title" v-bind="link" />
       </q-list>
+      <q-toggle @update:model-value="toggle()" v-model="val" :icon="isDark ? 'dark_mode' : 'light_mode'"
+        class="toggle_mode_dark" />
     </q-drawer>
 
     <q-page-container>
@@ -31,13 +33,15 @@
 <script setup lang="ts">
 import transitionsComposable from '@composables/transitionsComposable';
 import type { ItemLinkPropsI } from '@components/ItemLink.vue';
-import ItemNote from '@components/ItemLink.vue';
 import menusComposable from '@composables/menusComposable';
+import modeDarkComposable from '@composables/modeDarkComposable';
 import { onBeforeRouteUpdate } from 'vue-router';
+import ItemNote from '@components/ItemLink.vue';
 import { onMounted } from 'vue';
 
 const { state } = transitionsComposable();
 const menus = menusComposable();
+const { isDark, val, toggle, init } = modeDarkComposable();
 
 defineOptions({
   name: 'MainLayout',
@@ -81,6 +85,7 @@ onBeforeRouteUpdate(() => {
 });
 
 onMounted(() => {
+  init();
   document.body.style.overflow = '';
 });
 </script>

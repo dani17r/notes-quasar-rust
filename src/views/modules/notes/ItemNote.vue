@@ -1,5 +1,5 @@
 <template>
-  <q-item :class="store.notes.current?.id == props.id ? 'tw-bg-gray-100' : null">
+  <q-item :class="store.notes.current?.id == props.id ? $stylesDark.bg.value : null">
     <q-item-section side botom>
       <q-icon name="check_circle" :color="props.done ? 'green' : 'grey'" />
     </q-item-section>

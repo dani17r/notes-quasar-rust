@@ -15,7 +15,7 @@ export default defineConfig((ctx) => {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['axios'],
+    boot: ['init', 'axios', 'i18n'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ['tailwind.css', 'app.scss'],
@@ -120,7 +120,7 @@ export default defineConfig((ctx) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Notify', 'Dialog', 'Dark', 'Loading'],
+      plugins: ['Notify', 'Dialog', 'Dark', 'Loading', 'Meta'],
     },
 
     // animations: 'all', // --- includes all animations

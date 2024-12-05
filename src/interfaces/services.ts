@@ -15,6 +15,7 @@ export interface Pagination {
 
 export interface Filters {
   fields_search: string;
+  conditionals: string;
   search: string;
   fields: string;
   without: boolean;

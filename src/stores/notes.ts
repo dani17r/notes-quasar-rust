@@ -14,12 +14,15 @@ export const useNoteStore = defineStore('note', {
       filters: defaultFilter,
     },
   actions: {
-    getListNotes(isPagination = false, pagination?: Partial<Pagination>) {
+    getListNotes(isPagination = false, pagination?: Partial<Pagination>, updateData = true) {
       return notesServices
         .getAll({ ...this.pagination, ...pagination, ...this.filters })
         .then((resp) => {
-          if (isPagination) this.list = [...this.list, ...resp.data];
-          else this.list = resp.data;
+
+          if (updateData) {
+            if (isPagination) this.list = [...this.list, ...resp.data];
+            else this.list = resp.data;
+          }
 
           this.pagination = resp.pagination;
           this.filters = resp.filters;
@@ -27,6 +30,7 @@ export const useNoteStore = defineStore('note', {
         })
         .then((resp) => {
           if (!resp.data.length) this.pagination.pag -= 1;
+          return resp;
         })
         .catch(() => {
           this.pagination.count = 0;

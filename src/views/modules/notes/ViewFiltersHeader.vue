@@ -1,18 +1,8 @@
 <template>
   <div
-    class="tw-fixed tw-top-[60px] tw-z-10 tw-w-full tw-flex tw-items-center tw-px-6 tw-gap-3 tw-border-b tw-border-gray-200 tw-bg-white tw-pb-2"
-  >
-    <q-select
-      @update:model-value="getNoteOfsearch(store.notes.filters.search)"
-      :options="selectFieldSearch.options"
-      v-model="selectFieldSearch.val"
-      label="Buscar por:"
-      class="tw-w-[30%]"
-      map-options
-      emit-value
-      borderless
-      dense
-    >
+    :class="['tw-fixed tw-top-[50px] tw-z-10 tw-w-full tw-flex tw-items-center tw-px-6 tw-gap-3 tw-border-b tw-h-[50px] ', $stylesDark.bg.value]">
+    <q-select @update:model-value="getNoteOfsearch(store.notes.filters.search)" :options="selectFieldSearch.options"
+      v-model="selectFieldSearch.val" label="Buscar por:" class="tw-w-[30%]" map-options emit-value borderless dense>
       <template v-slot:prepend>
         <q-icon name="format_list_bulleted_add" size="35px" />
       </template>
@@ -28,16 +18,8 @@
       </template>
     </q-select>
 
-    <q-input
-      :model-value="store.notes.filters.search"
-      @update:model-value="getNoteOfsearch"
-      placeholder="Buscar"
-      class="tw-w-[50%]"
-      debounce="1000"
-      borderless
-      clearable
-      dense
-    >
+    <q-input :model-value="store.notes.filters.search" @update:model-value="getNoteOfsearch" placeholder="Buscar"
+      class="tw-w-[50%]" debounce="1000" borderless clearable dense>
       <template v-slot:prepend>
         <q-icon name="search" />
       </template>

@@ -1,9 +1,10 @@
 import { Dark, LocalStorage } from 'quasar';
 import { computed, ref } from 'vue';
 
+const val = ref(LocalStorage.getItem('darkMode') as boolean || false);
+const isDark = computed(() => val.value);
+
 export default () => {
-  const val = ref(LocalStorage.getItem('darkMode') as boolean);
-  const isDark = computed(() => val.value);
 
   const init = () => {
     Dark.set(val.value);
@@ -15,9 +16,15 @@ export default () => {
     Dark.set(val.value);
   };
 
+  const stylesDark = {
+    bg: computed(() => isDark.value ? 'tw-bg-zinc-800 tw-border-zinc-800' : 'tw-bg-zinc-100 tw-border-zinc-200')
+  }
+
   return {
+    stylesDark,
     init,
     toggle,
     isDark,
+    val,
   };
 };

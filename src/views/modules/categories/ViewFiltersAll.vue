@@ -1,8 +1,9 @@
 <template>
   <div
     :class="['tw-fixed tw-top-[50px] tw-z-10 tw-w-full tw-flex tw-items-center tw-px-6 tw-gap-3 tw-border-b tw-h-[50px]', $stylesDark.bg.value]">
-    <q-select @update:model-value="getTagOfsearch(store.tags.filters.search)" :options="selectFieldSearch.options"
-      v-model="selectFieldSearch.val" label="Buscar por:" class="tw-w-[11%]" map-options emit-value borderless dense>
+    <q-select @update:model-value="getCategoryOfsearch(store.categories.filters.search)"
+      :options="selectFieldSearch.options" v-model="selectFieldSearch.val" label="Buscar por:" class="tw-w-[11%]"
+      map-options emit-value borderless dense>
       <template v-slot:prepend>
         <q-icon name="format_list_bulleted_add" size="35px" />
       </template>
@@ -18,14 +19,14 @@
       </template>
     </q-select>
 
-    <q-input :model-value="store.tags.filters.search" @update:model-value="getTagOfsearch" placeholder="Buscar"
-      class="tw-w-[30%]" debounce="1000" borderless clearable dense>
+    <q-input :model-value="store.categories.filters.search" @update:model-value="getCategoryOfsearch"
+      placeholder="Buscar" class="tw-w-[30%]" debounce="1000" borderless clearable dense>
       <template v-slot:prepend>
         <q-icon name="search" />
       </template>
     </q-input>
 
-    <q-select @update:model-value="getTagOfsearch(store.tags.filters.search)" :options="sortBy.options"
+    <q-select @update:model-value="getCategoryOfsearch(store.categories.filters.search)" :options="sortBy.options"
       v-model="sortBy.val" label="Ordenar por:" class="tw-w-[11%]" map-options emit-value borderless dense>
       <template v-slot:prepend>
         <q-icon name="format_list_numbered" size="35px" />
@@ -42,7 +43,8 @@
       </template>
     </q-select>
 
-    <q-toggle @update:model-value="getTagOfsearch(store.tags.filters.search)" v-model="sortBy.order" left-label dense>
+    <q-toggle @update:model-value="getCategoryOfsearch(store.categories.filters.search)" v-model="sortBy.order"
+      left-label dense>
       <div class="tw-flex tw-justify-center tw-items-center">
         <q-icon name="filter_list" size="35px" class="tw-text-gray-500" />
         <span>Asc/Desc</span>
@@ -62,10 +64,10 @@ defineOptions({
 
 const { store } = superComposable();
 
-const getTagOfsearch = (val: string | number | null) => {
-  store.tags.filters.search = String(val);
-  store.tags.pagination.pag = 1;
-  setTimeout(() => store.tags.getListTags(), 200);
+const getCategoryOfsearch = (val: string | number | null) => {
+  store.categories.filters.search = String(val);
+  store.categories.pagination.pag = 1;
+  setTimeout(() => store.categories.getListCategories(), 200);
 };
 
 const selectFieldSearch = reactive({
@@ -75,12 +77,8 @@ const selectFieldSearch = reactive({
       value: 'todos',
     },
     {
-      label: 'Nombre',
-      value: 'name',
-    },
-    {
-      label: 'Descripcion',
-      value: 'description',
+      label: 'Titulo',
+      value: 'title',
     },
   ],
   val: 'todos',
@@ -93,12 +91,8 @@ const sortBy = reactive({
       value: 'id',
     },
     {
-      label: 'Nombre',
-      value: 'name',
-    },
-    {
-      label: 'Descripcion',
-      value: 'description',
+      label: 'Titulo',
+      value: 'title',
     },
   ],
   val: 'id',
@@ -107,8 +101,8 @@ const sortBy = reactive({
 
 watchEffect(() => {
   if (selectFieldSearch.val)
-    store.tags.filters.fields_search = selectFieldSearch.val;
+    store.categories.filters.fields_search = selectFieldSearch.val;
   if (sortBy.val)
-    store.tags.filters.sort = `${sortBy.val}:${sortBy.order ? 'DESC' : 'ASC'}`;
+    store.categories.filters.sort = `${sortBy.val}:${sortBy.order ? 'DESC' : 'ASC'}`;
 });
 </script>

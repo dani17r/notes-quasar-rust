@@ -1,12 +1,13 @@
 <template>
   <ViewFiltersAll />
-  <WrapperOfLoading class="tw-w-full tw-p-10" :status="!store.tags.loading">
+  <WrapperOfLoading class="tw-w-full tw-p-10" :status="!store.categories.loading">
     <q-list class="scroll tw-pb-6 tw-pt-10" style="max-height: 75vh">
-      <q-infinite-scroll :disable="!store.tags.pagination.count" class="tw-relative" @load="onLoadMenu" :offset="10">
-        <div v-for="(tag, index) in store.tags.list" :key="tag.id">
-          <ItemTag v-bind="tag" />
+      <q-infinite-scroll :disable="!store.categories.pagination.count" class="tw-relative" @load="onLoadMenu"
+        :offset="10">
+        <div v-for="(category, index) in store.categories.list" :key="category.id">
+          <ItemCategory v-bind="category" />
 
-          <q-separator v-if="store.tags.pagination.count_total != index + 1" />
+          <q-separator v-if="store.categories.pagination.count_total != index + 1" />
         </div>
         <template v-slot:loading>
           <div class="tw-flex tw-justify-center tw-w-full">
@@ -23,26 +24,26 @@
 import WrapperOfLoading from '@components/WrapperOfLoading.vue';
 import superComposable from '@composables/superComposable';
 import ViewFiltersAll from './ViewFiltersAll.vue';
-import ItemTag from '@modules/tags/ItemTag.vue';
+import ItemCategory from '@modules/categories/ItemCategory.vue';
 import { onMounted } from 'vue';
 
 const { store } = superComposable();
 
 onMounted(() => {
-  store.tags.pagination.pag = 1;
-  store.tags.getListTags();
+  store.categories.pagination.pag = 1;
+  store.categories.getListCategories();
 });
 
 defineOptions({
-  name: 'ListTags',
+  name: 'ListCategories',
   inheritAttrs: false,
 });
 
 const onLoadMenu = (index: number, done: Function) => {
   if (index >= 1) {
     setTimeout(() => {
-      store.tags.pagination.pag += 1;
-      store.tags.getListTags(true).finally(() => done());
+      store.categories.pagination.pag += 1;
+      store.categories.getListCategories(true).finally(() => done());
     }, 400);
   }
 };

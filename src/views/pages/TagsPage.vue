@@ -1,8 +1,10 @@
 <template>
-  <q-page class="tw-flex tw-flex-row tw-gap-8 tw-p-10">
-    <ListTags />
-    <AddEditeTag />
-    <ButtonAddTag />
+  <q-page class="tw-row tw-row-cols tw-justify-evenly">
+    <div class="tw-flex tw-w-full">
+      <ListTags />
+      <AddEditeTag />
+      <ButtonAddTag />
+    </div>
   </q-page>
 </template>
 
@@ -10,8 +12,13 @@
 import ListTags from '@modules/tags/ListTags.vue';
 import AddEditeTag from '@modules/tags/AddEditeTag.vue';
 import ButtonAddTag from '@modules/tags/ButtonAddTag.vue';
+import { useMeta } from 'quasar';
 
 defineOptions({
-  name: 'NotesPage',
+  name: 'TagsPage',
 });
+
+useMeta({
+  title: 'Etiquetas'
+})
 </script>

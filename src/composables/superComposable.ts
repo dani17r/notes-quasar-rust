@@ -1,3 +1,4 @@
+import { useCategoryStore } from 'src/stores/categories';
 import handleErrorsAction from 'src/utils/handleErrors';
 import notifications from 'src/utils/notifications';
 import { useRouter, useRoute } from 'vue-router';
@@ -10,6 +11,7 @@ export default () => {
   const tags = useTagStore();
 
   const handleErrors = handleErrorsAction();
+  const categories = useCategoryStore();
   const notify = notifications();
   const router = useRouter();
   const route = useRoute();
@@ -30,6 +32,7 @@ export default () => {
       reset,
       notes,
       tags,
+      categories,
     },
     $q,
   };

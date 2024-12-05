@@ -8,6 +8,7 @@ export const defaultQuerys: QueryParams = {
   sort: 'id:desc',
   search: '',
   fields_search: '',
+  conditionals: '',
 };
 
 export const defaultPagination: Pagination = {
@@ -19,6 +20,7 @@ export const defaultPagination: Pagination = {
 
 export const defaultFilter: Filters = {
   fields_search: '',
+  conditionals: '',
   search: '',
   fields: '',
   without: false,
